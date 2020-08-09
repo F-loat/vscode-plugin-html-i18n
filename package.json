@@ -1,8 +1,9 @@
 {
   "name": "vscode-plugin-html-i18n",
-  "displayName": "vscode-plugin-html-i18n",
+  "displayName": "Html I18n Tools",
   "description": "HTML 国际化工具",
   "version": "0.0.1",
+  "publisher": "F-loat",
   "engines": {
     "vscode": "^1.47.0"
   },
@@ -16,6 +17,10 @@
     "onCommand:vscode-plugin-html-i18n.convert2excel",
     "onCommand:vscode-plugin-html-i18n.convert2json"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/F-loat/vscode-plugin-html-i18n.git"
+  },
   "main": "./out/index.js",
   "contributes": {
     "commands": [
