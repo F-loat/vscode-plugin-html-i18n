@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-const html2texts = require('./utils/html2texts');
+import html2texts from './utils/html2texts';
 
 export class HtmlI18nParse {
   public static register(): vscode.Disposable {

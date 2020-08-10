@@ -1,7 +1,7 @@
-const dayjs = require('dayjs');
-const parser = require('posthtml-parser');
+import dayjs from 'dayjs';
+import parser from 'posthtml-parser';
 
-module.exports = (html: string) => {
+const html2texts = (html: string) => {
   const texts: any[] = [];
   const tree = parser(html);
 
@@ -58,3 +58,5 @@ module.exports = (html: string) => {
 
   return { tree, texts };
 };
+
+export default html2texts;

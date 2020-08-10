@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as vscode from 'vscode';
-const json2xls = require('json2xls');
-const xls2json = require('convert-excel-to-json');
+import json2xls from 'json2xls';
+import xls2json from 'convert-excel-to-json';
 
 export class HtmlI18nConvertJson {
   public static register(): vscode.Disposable {
