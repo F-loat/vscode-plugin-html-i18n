@@ -11,7 +11,7 @@ export class HtmlI18nConvertJson {
 
       fs.writeFileSync(uri.fsPath.replace(/\.json?$/, '.xlsx'), xlsx, 'binary');
 
-      vscode.window.showInformationMessage('转换 JSON 文件成功');
+      vscode.window.showInformationMessage('转换 Excel 文件成功，翻译后可右键进行还原');
     });
   }
 
@@ -31,12 +31,14 @@ export class HtmlI18nConvertExcel {
 
       json.splice(0, 1);
 
+      const outputUri = vscode.Uri.parse(uri.path.replace(/\.xlsx?$/, '.json'));
       await vscode.workspace.fs.writeFile(
-        vscode.Uri.parse(uri.path.replace(/\.xlsx?$/, '.json')),
+        outputUri,
         Buffer.from(JSON.stringify(json, null, 2))
       );
 
-      vscode.window.showInformationMessage('还原 Excel 文件成功');
+      vscode.window.showTextDocument(outputUri);
+      vscode.window.showInformationMessage('还原 JSON 文件成功');
     });
   }
 

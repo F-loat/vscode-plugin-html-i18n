@@ -9,10 +9,14 @@ export class HtmlI18nParse {
       const localTexts = texts.map(({ text }: { text: string }) => {
         return { origin: text, local: '' };
       });
+
+      const outputUri = vscode.Uri.parse(uri.path.replace(/\.html?$/, '.json'));
       await vscode.workspace.fs.writeFile(
-        vscode.Uri.parse(uri.path.replace(/\.html?$/, '.json')),
+        outputUri,
         Buffer.from(JSON.stringify(localTexts, null, 2))
       );
+
+      vscode.window.showTextDocument(outputUri);
       vscode.window.showInformationMessage('生成 JSON 文件成功，翻译后可右键进行还原');
     });
   }

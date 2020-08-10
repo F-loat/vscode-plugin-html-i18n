@@ -8,6 +8,13 @@ export class HtmlI18nRender {
     return vscode.commands.registerCommand(HtmlI18nRender.viewType, async (uri: vscode.Uri) => {
       const htmlUri = vscode.Uri.parse(uri.path.replace(/\.json?$/, '.html'));
       const outputUri = vscode.Uri.parse(uri.path.replace(/\.json?$/, '-translated.html'));
+
+      try {
+        await vscode.workspace.fs.stat(htmlUri);
+      } catch {
+        vscode.window.showInformationMessage('原始 HTML 文件读取失败');
+      }
+
       const html = String(await vscode.workspace.fs.readFile(htmlUri));
       const json = String(await vscode.workspace.fs.readFile(uri));
       const texts = JSON.parse(json);
@@ -21,6 +28,7 @@ export class HtmlI18nRender {
 
       await vscode.workspace.fs.writeFile(outputUri, Buffer.from(newHtml));
 
+      vscode.window.showTextDocument(outputUri);
       vscode.window.showInformationMessage('还原 HTML 文件成功');
     });
   }

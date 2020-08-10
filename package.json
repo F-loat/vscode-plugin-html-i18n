@@ -60,17 +60,17 @@
         {
           "when": "resourceLangId == json",
           "command": "vscode-plugin-html-i18n.translate",
-          "group": "4_htmlI18n"
+          "group": "3_htmlI18n_extra"
         },
         {
           "when": "resourceLangId == json",
           "command": "vscode-plugin-html-i18n.convert2excel",
-          "group": "4_htmlI18n"
+          "group": "3_htmlI18n_extra"
         },
         {
           "when": "resourceExtname == .xlsx",
           "command": "vscode-plugin-html-i18n.convert2json",
-          "group": "4_htmlI18n"
+          "group": "3_htmlI18n_extra"
         }
       ]
     }
