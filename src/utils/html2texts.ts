@@ -8,16 +8,21 @@ const html2texts = (html: string) => {
   const transform = (node: any, paths = '') => {
     const isStyle = node.tag === 'style';
     const isScript = node.tag === 'script';
-    if (isStyle || isScript) {return;};
+
+    if (isStyle || isScript) {
+      return;
+    };
 
     const { placeholder } = node.attrs || {};
     const hasPlaceholder = !!placeholder;
+
     if (hasPlaceholder) {
       transform(placeholder, `${paths}.attrs.placeholder`);
       return;
     }
 
     const hasContent = !!node.content;
+
     if (hasContent) {
       node.content.forEach((item: any, index: number) => {
         transform(item, `${paths}.content[${index}]`);
@@ -34,7 +39,7 @@ const html2texts = (html: string) => {
     const text = node.replace(/\s+/g, ' ').trim();
 
     const isEmpty = () => !text;
-    const isDOCTYPE = () => !!text.match(/<!DOCTYPE/);
+    const isDOCTYPE = () => !!text.match(/<![DOCTYPE|doctype]/);
     const isComment = () => !!text.match(/<!--/);
     const isNumber = () => !isNaN(Number(text));
     const isDate = () => dayjs(text).isValid();
