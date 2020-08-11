@@ -22,6 +22,7 @@
     "url": "https://github.com/F-loat/vscode-plugin-html-i18n.git"
   },
   "main": "./out/index.js",
+  "icon": "media/icon.png",
   "contributes": {
     "commands": [
       {
