@@ -15,9 +15,9 @@ async function writeFile(uri: vscode.Uri, data: any) {
   vscode.window.showInformationMessage('JSON 文件已更新');
 };
 
-export class HtmlI18nTranslate {
+export class HTMLI18nTranslate {
   public static register(): vscode.Disposable {
-    return vscode.commands.registerCommand(HtmlI18nTranslate.viewType, async (uri: vscode.Uri) => {
+    return vscode.commands.registerCommand(HTMLI18nTranslate.viewType, async (uri: vscode.Uri) => {
       const texts = JSON.parse(String(await vscode.workspace.fs.readFile(uri)));
       const total = texts.length;
       const transMap = new Map();

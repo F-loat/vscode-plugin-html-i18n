@@ -3,9 +3,9 @@ import * as vscode from 'vscode';
 import json2xls from 'json2xls';
 import xls2json from 'convert-excel-to-json';
 
-export class HtmlI18nConvertJson {
+export class HTMLI18nConvertJson {
   public static register(): vscode.Disposable {
-    return vscode.commands.registerCommand(HtmlI18nConvertJson.viewType, async (uri: vscode.Uri) => {
+    return vscode.commands.registerCommand(HTMLI18nConvertJson.viewType, async (uri: vscode.Uri) => {
       const json = JSON.parse(String(await vscode.workspace.fs.readFile(uri)));
       const xlsx = json2xls(json);
 
@@ -18,9 +18,9 @@ export class HtmlI18nConvertJson {
   private static readonly viewType = 'vscode-plugin-html-i18n.convert2excel';
 }
 
-export class HtmlI18nConvertExcel {
+export class HTMLI18nConvertExcel {
   public static register(): vscode.Disposable {
-    return vscode.commands.registerCommand(HtmlI18nConvertExcel.viewType, async (uri: vscode.Uri) => {
+    return vscode.commands.registerCommand(HTMLI18nConvertExcel.viewType, async (uri: vscode.Uri) => {
       const json = xls2json({
         sourceFile: uri.path,
         columnToKey: {

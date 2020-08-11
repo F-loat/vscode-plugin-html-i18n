@@ -1,9 +1,9 @@
 import * as vscode from 'vscode';
 import html2texts from './utils/html2texts';
 
-export class HtmlI18nParse {
+export class HTMLI18nParse {
   public static register(): vscode.Disposable {
-    return vscode.commands.registerCommand(HtmlI18nParse.viewType, async (uri: vscode.Uri) => {
+    return vscode.commands.registerCommand(HTMLI18nParse.viewType, async (uri: vscode.Uri) => {
       const html = await vscode.workspace.fs.readFile(uri);
       const { texts } = html2texts(String(html));
       const localTexts = texts.map(({ text }: { text: string }) => {

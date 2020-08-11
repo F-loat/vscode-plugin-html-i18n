@@ -3,9 +3,9 @@ import set from 'lodash.set';
 import render from 'posthtml-render';
 import html2texts from './utils/html2texts';
 
-export class HtmlI18nRender {
+export class HTMLI18nRender {
   public static register(): vscode.Disposable {
-    return vscode.commands.registerCommand(HtmlI18nRender.viewType, async (uri: vscode.Uri) => {
+    return vscode.commands.registerCommand(HTMLI18nRender.viewType, async (uri: vscode.Uri) => {
       const htmlUri = vscode.Uri.parse(uri.path.replace(/\.json?$/, '.html'));
       const outputUri = vscode.Uri.parse(uri.path.replace(/\.json?$/, '-translated.html'));
 
@@ -24,9 +24,9 @@ export class HtmlI18nRender {
         set(tree, item.paths, texts[index].local);
       });
 
-      const newHtml = render(tree);
+      const newHTML = render(tree);
 
-      await vscode.workspace.fs.writeFile(outputUri, Buffer.from(newHtml));
+      await vscode.workspace.fs.writeFile(outputUri, Buffer.from(newHTML));
 
       vscode.window.showTextDocument(outputUri);
       vscode.window.showInformationMessage('还原 HTML 文件成功');
