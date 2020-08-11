@@ -7,7 +7,8 @@
 			"es6"
 		],
 		"sourceMap": true,
-		"esModuleInterop": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
 		"rootDir": "src",
 		"strict": true   /* enable all strict type-checking options */
 		/* Additional Checks */

@@ -4,7 +4,7 @@ import SparkMD5 from 'spark-md5';
 const appid = '20200424000428633';
 const secret = 'ptBeUtXqXC0WE4vQUWcx';
 
-module.exports = (word: string, to = 'zh') => {
+const fanyi = (word: string, to = 'zh') => {
   const encodeWord = encodeURIComponent(word);
   const salt = Date.now();
   const sign = SparkMD5.hash(`${appid}${word}${salt}${secret}`);
@@ -20,3 +20,5 @@ module.exports = (word: string, to = 'zh') => {
       Promise.resolve('');
     });
 };
+
+export default fanyi;

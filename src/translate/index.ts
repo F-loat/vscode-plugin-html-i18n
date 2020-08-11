@@ -1,8 +1,12 @@
 import * as vscode from 'vscode';
-const fanyi = require('./utils/fanyi');
+import fanyi from '../utils/fanyi';
+import language from './language.json';
 
-const options = {
-  to: 'zh',
+const options: {
+  to?: string;
+  number: number;
+} = {
+  to: undefined,
   number: 50
 };
 
@@ -17,6 +21,15 @@ export class HtmlI18nTranslate {
       const texts = JSON.parse(String(await vscode.workspace.fs.readFile(uri)));
       const total = texts.length;
       const transMap = new Map();
+
+      options.to = await vscode.window.showQuickPick(language, {
+        placeHolder: '请选择目标语言'
+      }).then(item => item && item.description);
+
+      if (!options.to) {
+        vscode.window.showWarningMessage('请选择目标语言');
+        return;
+      }
 
       vscode.window.withProgress({
         location: vscode.ProgressLocation.Notification,
