@@ -2,7 +2,7 @@
   "name": "vscode-plugin-html-i18n",
   "displayName": "HTML I18n Tools",
   "description": "HTML 国际化工具",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publisher": "F-loat",
   "engines": {
     "vscode": "^1.47.0"
