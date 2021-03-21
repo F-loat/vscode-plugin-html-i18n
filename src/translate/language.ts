@@ -1,4 +1,4 @@
-[
+export default [
   {
     "label": "中文",
     "description": "zh"

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import fanyi from '../utils/fanyi';
-import language from './language.json';
+import language from './language';
 
 const options: {
   to?: string;
