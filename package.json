@@ -89,12 +89,12 @@
       "type": "object",
       "title": "HTML 翻译插件",
       "properties": {
-        "vscode-plugin-html-i18n.baidu-appid": {
+        "vscode-plugin-html-i18n.BaiduAppid": {
           "type": "string",
           "default": "20200424000428633",
           "description": "百度翻译 APPID"
         },
-        "vscode-plugin-html-i18n.baidu-secret": {
+        "vscode-plugin-html-i18n.BaiduSecret": {
           "type": "string",
           "default": "ptBeUtXqXC0WE4vQUWcx",
           "description": "百度翻译 SECRET"

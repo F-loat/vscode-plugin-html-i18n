@@ -2,8 +2,8 @@ import axios from 'axios';
 import SparkMD5 from 'spark-md5';
 import * as vscode from 'vscode';
 
-const appid = vscode.workspace.getConfiguration().get('vscode-plugin-html-i18n.baidu-appid');
-const secret = vscode.workspace.getConfiguration().get('vscode-plugin-html-i18n.baidu-secret');
+const appid = vscode.workspace.getConfiguration().get('vscode-plugin-html-i18n.BaiduAppid');
+const secret = vscode.workspace.getConfiguration().get('vscode-plugin-html-i18n.BaiduSecret');
 
 const fanyi = (word: string, to = 'zh') => {
   const encodeWord = encodeURIComponent(word);
