@@ -84,6 +84,22 @@
           "group": "3_htmlI18n_extra"
         }
       ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "HTML 翻译插件",
+      "properties": {
+        "vscode-plugin-html-i18n.baidu-appid": {
+          "type": "string",
+          "default": "20200424000428633",
+          "description": "百度翻译 APPID"
+        },
+        "vscode-plugin-html-i18n.baidu-secret": {
+          "type": "string",
+          "default": "ptBeUtXqXC0WE4vQUWcx",
+          "description": "百度翻译 SECRET"
+        }
+      }
     }
   },
   "scripts": {

@@ -2,11 +2,12 @@ import * as fs from 'fs';
 import * as vscode from 'vscode';
 import json2xls from 'json2xls';
 import xls2json from 'convert-excel-to-json';
+import file2texts from './utils/file2texts';
 
 export class HTMLI18nConvertJson {
   public static register(): vscode.Disposable {
     return vscode.commands.registerCommand(HTMLI18nConvertJson.viewType, async (uri: vscode.Uri) => {
-      const json = JSON.parse(String(await vscode.workspace.fs.readFile(uri)));
+      const json = await file2texts(uri);
       const xlsx = json2xls(json);
 
       fs.writeFileSync(uri.fsPath.replace(/\.json?$/, '.xlsx'), xlsx, 'binary');
@@ -31,10 +32,14 @@ export class HTMLI18nConvertExcel {
 
       json.splice(0, 1);
 
+      const texts = json.reduce((result: Record<string, string>, { local, origin }: { local: string; origin: string }) => {
+        return { ...result, [origin]: local };
+      }, {});
+
       const outputUri = vscode.Uri.parse(uri.path.replace(/\.xlsx?$/, '.json'));
       await vscode.workspace.fs.writeFile(
         outputUri,
-        Buffer.from(JSON.stringify(json, null, 2))
+        Buffer.from(JSON.stringify(texts, null, 2))
       );
 
       vscode.window.showTextDocument(outputUri);

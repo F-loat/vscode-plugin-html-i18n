@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import fanyi from '../utils/fanyi';
+import file2texts from '../utils/file2texts';
 import language from './language';
 
 const options: {
@@ -11,14 +12,17 @@ const options: {
 };
 
 async function writeFile(uri: vscode.Uri, data: any) {
-  await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify(data, null, 2)));
+  const texts = data.reduce((result: Record<string, string>, { local, origin }: { local: string; origin: string }) => {
+    return { ...result, [origin]: local };
+  }, {});
+  await vscode.workspace.fs.writeFile(uri, Buffer.from(JSON.stringify(texts, null, 2)));
   vscode.window.showInformationMessage('JSON 文件已更新');
 };
 
 export class HTMLI18nTranslate {
   public static register(): vscode.Disposable {
     return vscode.commands.registerCommand(HTMLI18nTranslate.viewType, async (uri: vscode.Uri) => {
-      const texts = JSON.parse(String(await vscode.workspace.fs.readFile(uri)));
+      const texts = await file2texts(uri);
       const total = texts.length;
       const transMap = new Map();
 
@@ -48,7 +52,7 @@ export class HTMLI18nTranslate {
           cancelFlag = true;
         });
 
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
           translation(1);
 
           async function translation(index: number) {

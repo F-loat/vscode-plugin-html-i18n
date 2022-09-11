@@ -6,9 +6,9 @@ export class HTMLI18nParse {
     return vscode.commands.registerCommand(HTMLI18nParse.viewType, async (uri: vscode.Uri) => {
       const html = await vscode.workspace.fs.readFile(uri);
       const { texts } = html2texts(String(html));
-      const localTexts = texts.map(({ text }: { text: string }) => {
-        return { origin: text, local: '' };
-      });
+      const localTexts = texts.reduce((result: Record<string, string>, { text }: { text: string }) => {
+        return { ...result, [text]: '' };
+      }, {});
 
       const outputUri = vscode.Uri.parse(uri.path.replace(/\.html?$/, '.json'));
       await vscode.workspace.fs.writeFile(
